@@ -96,6 +96,33 @@ window.adk_pdisp = {
     </div>
   </section>
 
+	<script>
+(function(i,n,p,a,g,e){
+i.inpagepush = i.inpagepush || function() {
+(i.inpagepush.q=(i.inpagepush.q||[])).push(arguments)
+};
+var s=n.getElementsByTagName('head')[0];
+var q=n.createElement('script'); q.async=1;
+q.src='//static.ezmob.com/inpage/inpage.js';
+s.appendChild(q);
+i.inpagepush('init', {
+host: 'xml.qualiclicks.com',
+feed: 841032,
+auth : 'HjgF',
+subid: 'site1',
+refresh: 90,
+position: 'top',
+position_mobile: 'top',
+slots: 1,
+query : '',
+nodesrc : true
+});
+i.inpagepush('show');
+})(window, document);
+</script>
+
+                                
+
   <!-- Footer -->
   <footer class="text-center py-4 text-gray-400 text-sm">
     © 2025 Boostify. All rights reserved.

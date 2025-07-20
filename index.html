@@ -30,7 +30,31 @@
       <a href="#how-it-works" class="px-6 py-3 rounded-lg bg-gray-700 hover:bg-gray-600 text-lg transition">Learn More</a>
     </div>
   </main>
-
+<script>
+(function(i,n,t,s,t,l){
+ i.intstl = i.intstl || function() {
+  (i.intstl.q=(i.intstl.q||[])).push(arguments)
+};
+var s=n.getElementsByTagName('head')[0];
+var q=n.createElement('script'); q.async=1;
+q.src='https://static.ezmob.com/intstl/intstl.js';
+s.appendChild(q);
+i.intstl('init', {
+  host: 'xml.qualiclicks.com',
+  feed: 841028,  // ✅ Your Interstitial Feed ID
+  auth: 'x7Np',  // ✅ Replace with your actual auth code
+  logo: 'https://adk.ezmob.com/images/icoLogo.png',
+  color1: '#3c8dbc',
+  color2: '#307196',
+  textColor: 'white',
+  background: '#f7f7f6',
+  engagementPeriod: 10,
+  interval: 11,
+  defer: 10
+});
+i.intstl('show');
+})(window, document);
+</script>
   <script>
 (function(i,n,t,s,t,l){
  i.intstl = i.intstl || function() {

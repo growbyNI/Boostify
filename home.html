@@ -360,44 +360,29 @@ function closeEarn() {
 
    <!--  Inter ad -->
 
-<script>
+    <script>
 (function(i,n,t,s,t,l){
-  i.intstl = i.intstl || function() {
-    (i.intstl.q=(i.intstl.q||[])).push(arguments)
-  };
-
-  var s = n.getElementsByTagName('head')[0];
-  var q = n.createElement('script');
-  q.async = 1;
-  q.src = 'https://static.ezmob.com/intstl/intstl.js';
-  s.appendChild(q);
-
-  // Function to show ad
-  function showInterstitialAd() {
-    i.intstl('init', {
-      host: 'xml.qualiclicks.com',
-      feed: 841687,
-      auth : 'zyPl',
-      logo: 'https://adk.ezmob.com/images/icoLogo.png',
-      color1: '#3c8dbc',
-      color2: '#307196',
-      textColor: 'white',
-      background: '#f7f7f6',
-      engagementPeriod: 10,
-      interval: 12,
-      defer: 10
-    });
-    i.intstl('show');
-  }
-
-  // Show ad immediately when page loads
-  n.addEventListener('DOMContentLoaded', showInterstitialAd);
-
-  // Repeat every 1 minute
-  setInterval(showInterstitialAd, 60 * 1000);
-
+ i.intstl = i.intstl || function() {
+  (i.intstl.q=(i.intstl.q||[])).push(arguments)
+};
+var s=n.getElementsByTagName('head')[0];
+var q=n.createElement('script'); q.async=1;
+q.src='https://static.ezmob.com/intstl/intstl.js';
+s.appendChild(q);
+i.intstl('init', {
+ host: 'xml.qualiclicks.com',
+ feed: 841687,
+ auth : 'zyPl',
+ logo: 'https://adk.ezmob.com/images/icoLogo.png',
+ color1: '#3c8dbc', color2: '#307196',
+ textColor: 'white', background: '#f7f7f6',
+ engagementPeriod: 10,
+ interval: 12,
+defer: 10
+});
+i.intstl('show');
 })(window, document);
-</script>
+</script>        make this ad code like this ads call on every one minute
 
          
 

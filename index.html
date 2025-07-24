@@ -51,6 +51,65 @@
 
   <!-- How It Works Section -->
   <section id="how-it-works" class="py-16 bg-gray-900 px-6 text-center">
+	<!-- Container for Ads -->
+<div id="bidvertiser-ads" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;padding:20px;max-width:1200px;margin:auto;"></div>
+
+<script>
+async function loadBidvertiserAds() {
+    const pid = "939363"; // Apna PID
+    const bid = "2101062"; // Apna BID
+    const kterm = "video"; // Keyword
+    const maxcount = 5; // Kitne ads ek saath
+
+    // IP fetch
+    let cip = "";
+    try {
+        const ipRes = await fetch("https://api.ipify.org?format=json");
+        const ipData = await ipRes.json();
+        cip = ipData.ip;
+    } catch {
+        cip = "";
+    }
+
+    const url = `http://2101062.bdv-w.bidvertiser.com/BidVertiser.dbm?pid=${pid}&bid=${bid}&xml=1&dlt=0&maxcount=${maxcount}&Kterm=${encodeURIComponent(kterm)}&cip=${cip}&bvref=${encodeURIComponent(window.location.href)}&u_agnt=${encodeURIComponent(navigator.userAgent)}&showimgs=1&ownid=xml1`;
+
+    try {
+        const response = await fetch(url);
+        const text = await response.text();
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(text, "application/xml");
+
+        const ads = xml.getElementsByTagName("adcontent");
+        let html = "";
+
+        for (let ad of ads) {
+            const title = ad.getElementsByTagName("title")[0]?.textContent || "";
+            const desc = ad.getElementsByTagName("description")[0]?.textContent || "";
+            const img = ad.getElementsByTagName("image")[0]?.textContent || "";
+            const link = ad.getElementsByTagName("redirect")[0]?.textContent || "";
+
+            html += `
+                <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.1);transition:transform 0.3s;">
+                    <a href="${link}" target="_blank" style="text-decoration:none;color:#000;display:block;">
+                        <img src="${img}" alt="${title}" style="width:100%;height:180px;object-fit:cover;">
+                        <div style="padding:12px;">
+                            <h3 style="font-size:16px;margin:0 0 8px;font-weight:600;">${title}</h3>
+                            <p style="font-size:14px;color:#555;margin:0;">${desc}</p>
+                        </div>
+                    </a>
+                </div>
+            `;
+        }
+
+        document.getElementById("bidvertiser-ads").innerHTML = html || "<p style='text-align:center;'>No ads available right now.</p>";
+    } catch (e) {
+        console.error("Failed to load ads:", e);
+    }
+}
+
+loadBidvertiserAds();
+</script>
+
     <h3 class="text-3xl font-bold mb-10 text-blue-400">How Boostify Works</h3>
     <div class="grid gap-8 md:grid-cols-4 max-w-6xl mx-auto">
       <div class="bg-gray-800 p-6 rounded-2xl shadow hover:shadow-blue-500/30 transition">

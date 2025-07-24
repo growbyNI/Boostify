@@ -52,16 +52,18 @@
   <!-- How It Works Section -->
   <section id="how-it-works" class="py-16 bg-gray-900 px-6 text-center">
 	<!-- Container for Ads -->
-<div id="bidvertiser-ads" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;padding:20px;max-width:1200px;margin:auto;"></div>
+<div id="bidvertiser-ads" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;padding:20px;max-width:1200px;margin:auto;">
+  <p style="grid-column:1/-1;text-align:center;font-size:14px;color:#888;">Sponsored Ads</p>
+</div>
 
 <script>
 async function loadBidvertiserAds() {
-    const pid = "939363"; // Apna PID
-    const bid = "2101062"; // Apna BID
-    const kterm = "video"; // Keyword
-    const maxcount = 5; // Kitne ads ek saath
+    const pid = "939363";      // Apna PID
+    const bid = "2101062";     // Apna BID
+    const kterm = "video";     // Keyword
+    const maxcount = 5;        // Ek saath kitne ads dikhane hain
 
-    // IP fetch
+    // Visitor ka IP fetch karte hain
     let cip = "";
     try {
         const ipRes = await fetch("https://api.ipify.org?format=json");
@@ -71,7 +73,8 @@ async function loadBidvertiserAds() {
         cip = "";
     }
 
-    const url = `http://2101062.bdv-w.bidvertiser.com/BidVertiser.dbm?pid=${pid}&bid=${bid}&xml=1&dlt=0&maxcount=${maxcount}&Kterm=${encodeURIComponent(kterm)}&cip=${cip}&bvref=${encodeURIComponent(window.location.href)}&u_agnt=${encodeURIComponent(navigator.userAgent)}&showimgs=1&ownid=xml1`;
+    // Request URL (https version use karna)
+    const url = `https://2101062.bdv-w.bidvertiser.com/BidVertiser.dbm?pid=${pid}&bid=${bid}&xml=1&dlt=0&maxcount=${maxcount}&Kterm=${encodeURIComponent(kterm)}&cip=${cip}&bvref=${encodeURIComponent(window.location.href)}&u_agnt=${encodeURIComponent(navigator.userAgent)}&showimgs=1&ownid=xml1`;
 
     try {
         const response = await fetch(url);
@@ -89,7 +92,7 @@ async function loadBidvertiserAds() {
             const link = ad.getElementsByTagName("redirect")[0]?.textContent || "";
 
             html += `
-                <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.1);transition:transform 0.3s;">
+                <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.1);transition:transform 0.3s;cursor:pointer;">
                     <a href="${link}" target="_blank" style="text-decoration:none;color:#000;display:block;">
                         <img src="${img}" alt="${title}" style="width:100%;height:180px;object-fit:cover;">
                         <div style="padding:12px;">
@@ -101,7 +104,7 @@ async function loadBidvertiserAds() {
             `;
         }
 
-        document.getElementById("bidvertiser-ads").innerHTML = html || "<p style='text-align:center;'>No ads available right now.</p>";
+        document.getElementById("bidvertiser-ads").innerHTML += html || "<p style='grid-column:1/-1;text-align:center;'>No ads available right now.</p>";
     } catch (e) {
         console.error("Failed to load ads:", e);
     }
@@ -109,6 +112,7 @@ async function loadBidvertiserAds() {
 
 loadBidvertiserAds();
 </script>
+
 
     <h3 class="text-3xl font-bold mb-10 text-blue-400">How Boostify Works</h3>
     <div class="grid gap-8 md:grid-cols-4 max-w-6xl mx-auto">

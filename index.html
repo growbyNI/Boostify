@@ -133,6 +133,32 @@ loadBidvertiserAds();
       </div>
     </div>
   </section>
+<!-- Load Shareus GPT -->
+<script type="module" src="https://securepubads.shareus.io/scripts/tag/js/gpt.js"></script>
+
+<!-- Button to call the ad -->
+<button id="showAdBtn">Show Reward Ad</button>
+
+<!-- Container where ad will appear -->
+<div id="shareus-ad-slot-1" style="width:300px; height:250px; margin-top:10px;"></div>
+
+<script>
+  window._shareustag = window._shareustag || {cmd: []};
+
+  // Define ad slot (only once)
+  _shareustag.cmd.push(function() {
+      window.rewardSlot = _shareustag.defineRewardAdSlot(
+          '/shareus-admanager/2915655241/alrHmlv6PC/Banner 4'
+      );
+  });
+
+  // When button is clicked, display the ad
+  document.getElementById('showAdBtn').addEventListener('click', function () {
+      _shareustag.cmd.push(function() {
+          _shareustag.display('shareus-ad-slot-1');
+      });
+  });
+</script>
 
 <!-- ads  -->
 	<div style="margin:auot;">
